@@ -2,7 +2,16 @@ import { setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 
 function addProductToCart(product) {
-  setLocalStorage("so-cart", product);
+  if (!product) return;
+  let cart = JSON.parse(localStorage.getItem("so-cart"));
+
+    if (!Array.isArray(cart)) {
+    cart = [];}
+
+
+  cart.push(product);
+  localStorage.setItem("so-cart", JSON.stringify(cart));
+  console.log("Cart updated:", cart);
 }
 // add to cart button event handler
 async function addToCartHandler(e) {
