@@ -193,12 +193,18 @@ button {
 }
 
 .cart-card__quantity {
-  grid-row: 1;
+  grid-row: 2;
   grid-column: 3;
 }
 
 .cart-card__price {
-  grid-row: 2;
+  grid-row: 3;
+  grid-column: 3;
+}
+
+.cart-card__remove{
+  cursor: pointer;
+  grid-row: 1;
   grid-column: 3;
 }
 
