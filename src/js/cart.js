@@ -8,7 +8,10 @@ function renderCartContents() {
     item.addEventListener('click', (e) => {
       const cartItems = getLocalStorage("so-cart") || [];
       setLocalStorage("so-cart", cartItems.filter(ci => ci.Id !== item.dataset.id ));
-      item.parentElement.remove();
+      item.parentElement.classList.add('cart-card__deleted')
+      setTimeout(() => {
+        item.parentElement.remove()
+      }, 350)
     })
   })
 }
