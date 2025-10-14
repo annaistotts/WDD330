@@ -23,6 +23,6 @@ document
   .addEventListener("click", addToCartHandler);
 
 // Team Assignment 2
-const productId = getParams('product');
-console.log('does this run');
+const productId = getParams("product");
+console.log("does this run");
 productDetails(productId);
