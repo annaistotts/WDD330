@@ -147,6 +147,19 @@ button {
   margin: 0.5em 0;
 }
 
+.product-card__price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-card__price-off {
+  font-size: 12px;
+  color: #3b3b3b;
+  margin-right: auto;
+  margin-left: 10px;
+}
+
 .card__brand {
   font-size: var(--small-font);
 }
