@@ -1,15 +1,15 @@
-function convertToJson(res) {
+async function convertToJson(res) {
   if (res.ok) {
-    return res.json();
+    return await res.json();
   } else {
     throw new Error("Bad Response");
   }
 }
 
-export function getData(category = "tents") {
-  return fetch(`../json/${category}.json`)
-    .then(convertToJson)
-    .then((data) => data);
+export async function getData(category = "tents") {
+  const res = await fetch(`../json/${category}.json`);
+  const data = convertToJson(res)
+  return data
 }
 
 export async function findProductById(id) {

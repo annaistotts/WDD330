@@ -17,6 +17,8 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
+  if (!item.Id) return '';
+
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img

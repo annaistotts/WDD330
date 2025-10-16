@@ -38,15 +38,10 @@ export function getParams(param) {
 
 
 export function renderListTemplate(templateFn, parentElement, list, position = "afterbegin", clear = true) {
-
-      if (clear) {
+  if (clear) {
     parentElement.innerHTML = "";
   } 
-  else{
   const htmlString = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
-    
-  }
-
-  };
+};
 

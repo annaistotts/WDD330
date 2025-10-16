@@ -5,11 +5,10 @@ import { findProductById } from "./productData.mjs";
 export default async function productDetails(productId) {
     const product = await findProductById(productId);
     renderProductDetails(product);
-    document.getElementById('addToCart').addEventListener('click', addToCart);
+    document.getElementById('addToCart').addEventListener('click', () => addToCart(product));
 }
 
-
-export function addToCart(product) {
+export async function addToCart(product) {
   const cart = getLocalStorage("so-cart");
   if (Array.isArray(cart)) {
     cart.push(product);
