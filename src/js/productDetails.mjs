@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, getProductPrice } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 
 // let product = {};
@@ -24,7 +24,7 @@ function renderProductDetails(product) {
     document.querySelector("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
     document.querySelector("#productImage").src = product.Image;
     document.querySelector("#productImage").alt = product.Name;
-    document.querySelector("#productFinalPrice").innerText = product.FinalPrice;
+    document.querySelector("#productFinalPrice").innerHTML = getProductPrice(product);
     document.querySelector("#productColorName").innerText = product.Colors[0].ColorName;
     document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
     document.querySelector('#addToCart').dataset.id = product.Id

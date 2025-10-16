@@ -45,3 +45,11 @@ export function renderListTemplate(templateFn, parentElement, list, position = "
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 };
 
+
+export function getProductPrice(product) {
+  return `<del>$${product.SuggestedRetailPrice}</del>
+          <span class="product-card__price-off">
+              (${Math.floor(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice)*100)}% off)
+          </span>
+          $${product.FinalPrice}`
+}
