@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script>
+      function missingImage(obj) {
+          console.log('Missing Image', obj)
+          obj.onerror = null;
+          obj.src = '../images/tents/tent-default.png';
+      }
+    </script>
   </head>
   <body>
     <header class="divider">
