@@ -98,6 +98,7 @@ button {
 
 /* Cart icon styles */
 .cart {
+  position: relative;
   padding-top: 1em;
   position: relative;
   text-align: center;
@@ -227,6 +228,24 @@ button {
 
 .cart-card__deleted {
   max-height: 0px;
+  opacity: 0;
+}
+
+.cart__counter {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: #f8a45b;
+  overflow: hidden;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.3s linear;
+}
+
+.cart__counter-disabled {
   opacity: 0;
 }
 
