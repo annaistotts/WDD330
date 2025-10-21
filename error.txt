@@ -1,0 +1,7 @@
+
+> outside@3.0.1 build
+> vite build --emptyOutDir
+
+vite v6.3.6 building for production...
+transforming...
+✓ 13 modules transformed.
