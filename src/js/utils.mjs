@@ -31,6 +31,48 @@ export function getParams(param) {
 }
 
 
+export async function renderWithTemplate(templateFn, parentElement, data, callback, position = "afterbegin", clear = true) {
+  const template = await templateFn();
+  
+  if (clear) {
+    parentElement.innerHTML = "";
+  } 
+
+  parentElement.insertAdjacentHTML(position, template);
+
+  if(callback) {
+    callback(data);
+  }
+};
+
+
+export function loadTemplate(path) {
+  return async function() {
+    const res = await fetch(path);
+    if (res.ok) {
+      const html = await res.text();
+      return html;
+    }
+  };
+}
+
+
+export async function loadHeaderFooter(){
+  const headTemplateFn = loadTemplate("/partials/head.html");
+  const headerTemplateFn = loadTemplate("/partials/header.html");
+  const footerTemplateFn = loadTemplate("/partials/footer.html");
+  
+  const headElement = document.querySelector("#default-head");
+  const headerElement = document.querySelector("#default-header");
+  const footerElement = document.querySelector("#default-footer");
+  
+  await renderWithTemplate(headTemplateFn, headElement);
+  await renderWithTemplate(headerTemplateFn, headerElement);
+  await renderWithTemplate(footerTemplateFn, footerElement);
+}
+
+
+
 // renderList(list, el) {
 //     const htmlStrings =  list.map(productCardTemplate);
 //     el.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
@@ -38,15 +80,10 @@ export function getParams(param) {
 
 
 export function renderListTemplate(templateFn, parentElement, list, position = "afterbegin", clear = true) {
-
-      if (clear) {
+  if (clear) {
     parentElement.innerHTML = "";
-  } 
-  else{
+  }
   const htmlString = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
-    
-  }
-
-  };
+};
 

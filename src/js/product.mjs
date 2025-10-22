@@ -1,6 +1,9 @@
 import { getParams } from "./utils.mjs";
 import productDetails, { addToCart } from "./productDetails.mjs";
 import { findProductById } from "./productData.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
 
 // function addProductToCart(product) {
 //   const cart = getLocalStorage("so-cart");
