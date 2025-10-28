@@ -3,7 +3,7 @@ import { loadHeaderFooter } from "./utils.mjs";
 
 async function init() {
     await loadHeaderFooter();
-    productList(".product-list", "tents");
+    // product listing moved to its own page (src/product-list/index.html)
 }
 
 init();

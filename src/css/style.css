@@ -231,6 +231,58 @@ button {
   }
 }
 
+/* Category grid styles */
+.category-grid {
+  padding: 2em 0.5em;
+}
+
+.category-grid h2 {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.category-grid .grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--dark-grey);
+  padding: 1em;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-card img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0.5em;
+}
+
+.category-card h3 {
+  margin: 0;
+  font-size: var(--small-font);
+  text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+  .category-grid .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 footer {
   font-size: var(--small-font);
   padding: 1em;

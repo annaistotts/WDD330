@@ -25,9 +25,7 @@ export function setClick(selector, callback) {
 export function getParams(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  //why does 'product' work here and not 'param'?
-  const product = urlParams.get('product')  
-  return product;
+  return urlParams.get(param);
 }
 
 

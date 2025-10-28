@@ -23,7 +23,7 @@ function renderProductDetails(product) {
     document.querySelector("title").innerText = `Sleep Outside | ${product.Name}`
     document.querySelector("#productName").innerText = product.Name;
     document.querySelector("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
-    document.querySelector("#productImage").src = product.Image;
+    document.querySelector("#productImage").src = product.Images.PrimaryLarge;
     document.querySelector("#productImage").alt = product.Name;
     document.querySelector("#productFinalPrice").innerText = product.FinalPrice;
     document.querySelector("#productColorName").innerText = product.Colors[0].ColorName;
