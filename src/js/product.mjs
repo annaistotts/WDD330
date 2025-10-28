@@ -1,6 +1,6 @@
 import { getParams } from "./utils.mjs";
 import productDetails, { addToCart } from "./productDetails.mjs";
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
