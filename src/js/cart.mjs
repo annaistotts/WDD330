@@ -17,7 +17,33 @@ function renderCartContents() {
       }, 350)
     })
   })
+
+
+// wishlist
+  document.querySelectorAll(".move-to-wishlist").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const id = btn.dataset.id;
+      let cartItems = getLocalStorage("so-cart") || [];
+      let wishlist = getLocalStorage("so-wishlist") || [];
+
+      // find item in cart
+      const item = cartItems.find((i) => i.Id === id);
+      if (!item) return;
+
+      // only add if not in wishlist
+      const InWishlist = wishlist.some((i) => i.Id === id);
+      if (!InWishlist) {
+        wishlist.push(item);
+        setLocalStorage("so-wishlist", wishlist);
+        alert(`${item.Name} added to wishlist! 🧡`);
+      } else {
+        alert(`${item.Name} is already in your wishlist.`);
+      }
+    });
+  });
 }
+
+
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -43,7 +69,7 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-  
+   <button class="move-to-wishlist" data-id="{{ item.Id }}"> 🧡 Wishlist</button>
 </li>`;
 
   return newItem;
