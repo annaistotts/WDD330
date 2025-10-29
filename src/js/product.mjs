@@ -41,3 +41,44 @@ document
   .addEventListener("click", addToWishlistHandler);
 
 
+
+// --- COMMENTS ---
+const commentForm = document.getElementById("commentForm");
+const commentInput = document.getElementById("commentInput");
+const commentsList = document.getElementById("commentsList");
+
+// Load comments from localStorage
+function loadComments(productId) {
+  const comments = JSON.parse(localStorage.getItem(`comments-${productId}`)) || [];
+  commentsList.innerHTML = "";
+  comments.forEach((comment) => {
+    const li = document.createElement("li");
+    li.textContent = comment;
+    commentsList.appendChild(li);
+  });
+}
+
+// Save comment to localStorage
+function saveComment(productId, comment) {
+  const comments = JSON.parse(localStorage.getItem(`comments-${productId}`)) || [];
+  comments.push(comment);
+  localStorage.setItem(`comments-${productId}`, JSON.stringify(comments));
+}
+
+// Handle comment form submission
+commentForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const comment = commentInput.value.trim();
+  if (!comment) return;
+
+  saveComment(productId, comment);
+  loadComments(productId);
+  commentInput.value = "";
+});
+
+// Initialize comments after loading product details
+loadComments(productId);
+
+
+
+
