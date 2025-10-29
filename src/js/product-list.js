@@ -8,7 +8,9 @@ async function init() {
   const titleEl = document.querySelector("#listTitle");
   if (titleEl) {
     // capitalise and make friendly
-    const pretty = category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    const pretty = category
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase());
     titleEl.textContent = `Top Products: ${pretty}`;
   }
   productList(".product-list", category);
