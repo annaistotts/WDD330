@@ -35,7 +35,7 @@ function renderCartContents() {
       if (!InWishlist) {
         wishlist.push(item);
         setLocalStorage("so-wishlist", wishlist);
-        alert(`${item.Name} added to wishlist! 🧡`);
+        alert(`${item.Name} added to wishlist!`);
       } else {
         alert(`${item.Name} is already in your wishlist.`);
       }
@@ -69,7 +69,7 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-   <button class="move-to-wishlist" data-id="{{ item.Id }}"> 🧡 Wishlist</button>
+   <button class="move-to-wishlist" data-id="{{ item.Id }}"> Wishlist</button>
 </li>`;
 
   return newItem;

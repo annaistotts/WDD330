@@ -27,12 +27,12 @@ export function addToWishlist(product) {
     if (!exists) {
       wishlist.push(product);
       setLocalStorage("so-wishlist", wishlist);
-      alert(`${product.Name} added to wishlist! 🧡`);
+      alert(`${product.Name} added to wishlist! `);
     } else {alert(`${product.Name} is already in your wishlist.`);
     }
   } else {
     setLocalStorage("so-wishlist", [product]);
-    alert(`${product.Name} added to wishlist! 🧡`);
+    alert(`${product.Name} added to wishlist! `);
   }
 }
 
