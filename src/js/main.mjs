@@ -7,3 +7,25 @@ async function init() {
 }
 
 init();
+
+
+// First-time visitor modal
+const modal = document.getElementById('signupModal');
+const closeBtn = modal.querySelector('.close');
+
+if (!localStorage.getItem('visited')) {
+    modal.style.display = 'block';
+    localStorage.setItem('visited', 'true');
+}
+
+// Close modal when clicking X
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Optional: Close modal when clicking outside content
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
