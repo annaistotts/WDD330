@@ -1,5 +1,5 @@
 import { getParams } from "./utils.mjs";
-import productDetails, { addToCart } from "./productDetails.mjs";
+import productDetails, { addToCart, addToWishlist } from "./productDetails.mjs";
 import { findProductById } from "./externalServices.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
@@ -29,3 +29,15 @@ document
 const productId = getParams("product");
 console.log("does this run");
 productDetails(productId);
+
+// Wishlist
+async function addToWishlistHandler(e) {
+  const product = await findProductById(e.target.dataset.id);
+  addToWishlist(product);
+}
+
+document
+  .getElementById("addToWishlist")
+  .addEventListener("click", addToWishlistHandler);
+
+
