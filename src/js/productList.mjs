@@ -1,5 +1,5 @@
 import { getProductsByCategory } from "./externalServices.mjs";
-import { renderListTemplate } from "./utils.mjs"
+import { renderListWithTemplate } from "./utils.mjs"
 
 function productCardTemplate(product) {
     return `<li class="product-card">
@@ -19,7 +19,7 @@ function productCardTemplate(product) {
 export default async function productList(selector, category ) {    
     const elements = document.querySelector(selector);
     const products = await getProductsByCategory(category);
-    renderListTemplate(productCardTemplate, elements, products);
+    renderListWithTemplate(productCardTemplate, elements, products);
 };
 
 

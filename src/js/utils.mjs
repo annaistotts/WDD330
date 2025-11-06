@@ -29,19 +29,7 @@ export function getParams(param) {
 }
 
 
-export async function renderWithTemplate(templateFn, parentElement, data, callback, position = "afterbegin", clear = true) {
-  const template = await templateFn();
-  
-  if (clear) {
-    parentElement.innerHTML = "";
-  } 
 
-  parentElement.insertAdjacentHTML(position, template);
-
-  if(callback) {
-    callback(data);
-  }
-};
 
 
 export function loadTemplate(path) {
@@ -56,15 +44,12 @@ export function loadTemplate(path) {
 
 
 export async function loadHeaderFooter(){
-  const headTemplateFn = loadTemplate("/partials/head.html");
   const headerTemplateFn = loadTemplate("/partials/header.html");
   const footerTemplateFn = loadTemplate("/partials/footer.html");
   
-  const headElement = document.querySelector("#default-head");
-  const headerElement = document.querySelector("#default-header");
-  const footerElement = document.querySelector("#default-footer");
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
   
-  await renderWithTemplate(headTemplateFn, headElement);
   await renderWithTemplate(headerTemplateFn, headerElement);
   await renderWithTemplate(footerTemplateFn, footerElement);
 }
@@ -77,11 +62,38 @@ export async function loadHeaderFooter(){
 // }
 
 
-export function renderListTemplate(templateFn, parentElement, list, position = "afterbegin", clear = true) {
+export function renderListWithTemplate(
+  templateFn, 
+  parentElement, 
+  list, 
+  position = "afterbegin", 
+  clear = true
+) {
   if (clear) {
     parentElement.innerHTML = "";
   }
+  console.log(templateFn);
   const htmlString = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
+};
+
+export async function renderWithTemplate(
+  templateFn, 
+  parentElement, 
+  data, 
+  callback, 
+  position = "afterbegin", 
+  clear = true
+) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  } 
+
+  const template = await templateFn(data);
+  parentElement.insertAdjacentHTML(position, template);
+
+  if(callback) {
+    callback(data);
+  }
 };
 
