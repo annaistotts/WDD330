@@ -1,22 +1,32 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
-loadHeaderFooter();
+export default function shoppingCart() {
+  const cartItems = getLocalStorage("so-cart");
+  console.log(cartItems);
+  const outputEl = document.querySelector(".product-list");
+  const test_product = cartItems[0];
+  console.log(test_product);
+  console.log(cartItemTemplate(test_product));
+  // renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+  const total = calculateListTotal(cartItems);
+  console.log(total);
+  displayCartTotal(total);
+}
 
-function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart") || [];
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  document.querySelectorAll('.cart-card__remove').forEach(item => {
-    item.addEventListener('click', (e) => {
-      const cartItems = getLocalStorage("so-cart") || [];
-      setLocalStorage("so-cart", cartItems.filter(ci => ci.Id !== item.dataset.id ));
-      item.parentElement.classList.add('cart-card__deleted')
-      setTimeout(() => {
-        item.parentElement.remove()
-      }, 350)
-    })
-  })
+// function renderCartContents() {
+//   const cartItems = getLocalStorage("so-cart") || [];
+//   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+//   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+//   document.querySelectorAll('.cart-card__remove').forEach(item => {
+//     item.addEventListener('click', (e) => {
+//       const cartItems = getLocalStorage("so-cart") || [];
+//       setLocalStorage("so-cart", cartItems.filter(ci => ci.Id !== item.dataset.id ));
+//       item.parentElement.classList.add('cart-card__deleted')
+//       setTimeout(() => {
+//         item.parentElement.remove()
+//       }, 350)
+//     })
+//   })
 
 
 // wishlist
@@ -41,15 +51,16 @@ function renderCartContents() {
       }
     });
   });
-}
+
 
 
 
 function cartItemTemplate(item) {
+  
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
@@ -71,8 +82,13 @@ function cartItemTemplate(item) {
   <p class="cart-card__price">$${item.FinalPrice}</p>
    <button class="move-to-wishlist" data-id="{{ item.Id }}"> Wishlist</button>
 </li>`;
-
   return newItem;
 }
 
-renderCartContents();
+function calculateListTotal(list) {
+  const amounts = list.map((item) => item.FinalPrice);
+  const total = amounts.reduce((sum, item) => sum + item, 0);
+  return total;
+}
+
+// renderCartContents();

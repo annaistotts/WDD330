@@ -147,6 +147,27 @@ button {
   margin: 0.5em 0;
 }
 
+.list-total {
+  text-align: right;
+}
+.list-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5em;
+}
+.list-footer > a {
+  /* display: block; */
+  padding: 0.3em 0.5em;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 5px;
+}
+.list-footer a:link,
+.list-footer a:visited {
+  color: var(--dark-grey);
+}
+
 .card__brand {
   font-size: var(--small-font);
 }
@@ -277,9 +298,20 @@ button {
   text-align: center;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 500px) {
+  body {
+    max-width: 1080px;
+    margin: auto;
+  }
+  .mission {
+    font-size: 1.2em;
+  }
   .category-grid .grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .cart-card {
+    font-size: inherit;
+    grid-template-columns: 150px auto 15%;
   }
 }
 

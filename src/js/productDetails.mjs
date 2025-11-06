@@ -1,22 +1,25 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 import { findProductById } from "./externalServices.mjs";
 
-// let product = {};
+let product = {};
+
+
 export default async function productDetails(productId) {
-    const product = await findProductById(productId);
-    renderProductDetails(product);
+    product = await findProductById(productId);
+    renderProductDetails();
     document.getElementById('addToCart').addEventListener('click', addToCart);
 }
 
 
-export function addToCart(product) {
-  const cart = getLocalStorage("so-cart");
-  if (Array.isArray(cart)) {
-    cart.push(product);
-    setLocalStorage("so-cart", cart);
-  } else {
-    setLocalStorage("so-cart", [product]);
-  }
+function addToCart() {
+  let cartContents = getLocalStorage("so-cart");
+
+  if (!cartContents) {
+    cartContents = [];
+  } 
+
+  cartContents.push(product);
+  setLocalStorage('so-cart', cartContents)
 }
 
 export function addToWishlist(product) {
@@ -37,7 +40,7 @@ export function addToWishlist(product) {
 }
 
 
-function renderProductDetails(product) {
+function renderProductDetails() {
     document.querySelector("title").innerText = `Sleep Outside | ${product.Name}`
     document.querySelector("#productName").innerText = product.Name;
     document.querySelector("#productNameWithoutBrand").innerText = product.NameWithoutBrand;
@@ -48,3 +51,40 @@ function renderProductDetails(product) {
     document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
     document.querySelector('#addToCart').dataset.id = product.Id
 }
+
+// --- COMMENTS ---
+const commentForm = document.getElementById("commentForm");
+const commentInput = document.getElementById("commentInput");
+const commentsList = document.getElementById("commentsList");
+
+// Load comments from localStorage
+export function loadComments(productId) {
+  const comments = JSON.parse(localStorage.getItem(`comments-${productId}`)) || [];
+  commentsList.innerHTML = "";
+  comments.forEach((comment) => {
+    const li = document.createElement("li");
+    li.textContent = comment;
+    commentsList.appendChild(li);
+  });
+}
+
+// Save comment to localStorage
+function saveComment(productId, comment) {
+  const comments = JSON.parse(localStorage.getItem(`comments-${productId}`)) || [];
+  comments.push(comment);
+  localStorage.setItem(`comments-${productId}`, JSON.stringify(comments));
+}
+
+// Handle comment form submission
+commentForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const comment = commentInput.value.trim();
+  if (!comment) return;
+
+  saveComment(productId, comment);
+  loadComments(productId);
+  commentInput.value = "";
+});
+
+// Initialize comments after loading product details
+loadComments(productId);
