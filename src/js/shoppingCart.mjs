@@ -5,12 +5,19 @@ export default function shoppingCart() {
   console.log(cartItems);
   const outputEl = document.querySelector(".product-list");
   const test_product = cartItems[0];
-  console.log(test_product);
-  console.log(cartItemTemplate(test_product));
-  // renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+  renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   const total = calculateListTotal(cartItems);
-  console.log(total);
   displayCartTotal(total);
+}
+
+function displayCartTotal(total) {
+  if (total > 0) {
+    // show our checkout button and total if there are items in the cart.
+    document.querySelector(".list-footer").classList.remove("hide");
+    document.querySelector(".list-total").innerText += ` $${total}`;
+  } else {
+    document.querySelector(".list-footer").classList.add("hide");
+  }
 }
 
 // function renderCartContents() {
@@ -87,8 +94,8 @@ function cartItemTemplate(item) {
 
 function calculateListTotal(list) {
   const amounts = list.map((item) => item.FinalPrice);
-  const total = amounts.reduce((sum, item) => sum + item, 0);
-  return total;
+  const total = Math.round(amounts.reduce((sum, item) => sum + item, 0) * 100)/100;
+return total;
 }
 
 // renderCartContents();

@@ -2,11 +2,9 @@ import { getParams } from "./utils.mjs";
 import productDetails from "./productDetails.mjs";
 
 // loadHeaderFooter();
-console.log('test');
 
-// const productId = getParams("product");
-// console.log(productId)
-// productDetails(productId);
+const productId = getParams("product");
+productDetails(productId);
 
 
 
