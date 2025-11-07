@@ -6,14 +6,9 @@ loadHeaderFooter();
 const productId = getParams("product");
 productDetails(productId);
 
-
-
-
 // import productDetails, { addToCart, addToWishlist } from "./productDetails.mjs";
 // import { findProductById } from "./externalServices.mjs";
 // import { loadHeaderFooter } from "./utils.mjs";
-
-
 
 // // function addProductToCart(product) {
 // //   const cart = getLocalStorage("so-cart");
@@ -49,8 +44,6 @@ productDetails(productId);
 // document
 //   .getElementById("addToWishlist")
 //   .addEventListener("click", addToWishlistHandler);
-
-
 
 // // --- COMMENTS ---
 // const commentForm = document.getElementById("commentForm");
@@ -88,7 +81,3 @@ productDetails(productId);
 
 // // Initialize comments after loading product details
 // loadComments(productId);
-
-
-
-

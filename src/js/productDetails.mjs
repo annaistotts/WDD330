@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, alertMessage } from "./utils.mjs";
 import { findProductById } from "./externalServices.mjs";
 
 let product = {};
@@ -8,6 +8,7 @@ export default async function productDetails(productId) {
     product = await findProductById(productId);
     renderProductDetails();
     document.getElementById('addToCart').addEventListener('click', addToCart);
+    document.getElementById("addToWishlist").addEventListener("click", addToWishlist);
 }
 
 
@@ -20,9 +21,11 @@ function addToCart() {
 
   cartContents.push(product);
   setLocalStorage('so-cart', cartContents)
+  alertMessage(`${product.Name} has been added to your cart!`);
 }
 
-export function addToWishlist(product) {
+
+function addToWishlist() {
   const wishlist = getLocalStorage("so-wishlist");
   if (Array.isArray(wishlist)) {
     // Only add if not already in wishlist
@@ -30,12 +33,12 @@ export function addToWishlist(product) {
     if (!exists) {
       wishlist.push(product);
       setLocalStorage("so-wishlist", wishlist);
-      alert(`${product.Name} added to wishlist! `);
+      alertMessage(`${product.Name} added to wishlist! `);
     } else {alert(`${product.Name} is already in your wishlist.`);
     }
   } else {
     setLocalStorage("so-wishlist", [product]);
-    alert(`${product.Name} added to wishlist! `);
+    alertMessage(`${product.Name} added to wishlist! `);
   }
 }
 
