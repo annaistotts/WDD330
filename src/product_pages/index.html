@@ -2,16 +2,15 @@
 
 <html lang="en">
   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sleep Outside | Product Page</title>
-  <link rel="stylesheet" href="/css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Product Page</title>
+    <link rel="stylesheet" href="/css/style.css" />
     <script src="/js/product.js" type="module"></script>
   </head>
 
   <body>
     <header class="divider" id="main-header"></header>
-    </header>
 
     <main class="divider">
       <section class="product-detail">
@@ -23,7 +22,9 @@
         <p class="product__description" id="productDescriptionHtmlSimple"></p>
         <div class="product-detail__add">
           <button id="addToCart" data-id="">Add to Cart</button>
-          <button id="addToWishlist" data-id="{{ product.Id }}">Wishlist</button>
+          <button id="addToWishlist" data-id="{{ product.Id }}">
+            Wishlist
+          </button>
         </div>
       </section>
 
@@ -31,10 +32,15 @@
         <h3>Comments</h3>
         <ul id="commentsList"></ul>
 
-          <form id="commentForm">
-            <input type="text" id="commentInput" placeholder="Add a comment" required />
-            <button type="submit">Submit</button>
-          </form>
+        <form id="commentForm">
+          <input
+            type="text"
+            id="commentInput"
+            placeholder="Add a comment"
+            required
+          />
+          <button type="submit">Submit</button>
+        </form>
       </section>
     </main>
 
