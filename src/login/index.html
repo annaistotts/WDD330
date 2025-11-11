@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Login</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="../js/login.js" type="module"></script>
+  </head>
+  <body>
+    <header class="divider" id="main-header"></header>
+    <main class="divider">
+      <form action="post" name="login">
+        <fieldset class="login-form">
+          <legend>Login</legend>
+          <p>
+            <label for="email">Email</label>
+            <!-- this is for a real input -->
+            <!-- <input type="email" required> -->
+            <input type="text" placeholder="email" value="user1@email.com" />
+          </p>
+          <p>
+            <label for="password">Password</label>
+            <!-- this is for a real input -->
+            <!-- <input type="password" name="login_password" id="login_password"> -->
+            <input type="password" placeholder="password" id="password" />
+          </p>
+          <button id="login-button" type="submit">Login</button>
+        </fieldset>
+      </form>
+    </main>
+    <footer id="main-footer"></footer>
+  </body>
+</html>
